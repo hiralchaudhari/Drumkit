@@ -1,4 +1,3 @@
-
 // Get all elements in document with class="drum" and attcah click event to the document
 var numberOfDrumButtons = document.querySelectorAll(".drum").length;
 for (var index = 0; index < numberOfDrumButtons; index++) {
@@ -8,7 +7,7 @@ for (var index = 0; index < numberOfDrumButtons; index++) {
     buttonAnimation(buttonInnerHTML)
   })
 }
-// attcah keypress event to the document
+// keyboard event listener to check for key presses
 document.addEventListener("keypress", function(event) {
   makesound(event.key);
   buttonAnimation(event.key)
@@ -46,9 +45,20 @@ function makesound(key) {
       snare.play();
       break;
     default:
+
+      document.getElementById("title").innerHTML = "Invalid input!";
+      document.getElementById("hint").innerHTML = "press key matches with character shown on drum image";
+
+      setTimeout(function() {
+        document.getElementById("title").innerHTML = "Drum 🥁 Kit";
+      }, 5000);
+      setTimeout(function() {
+        document.getElementById("hint").innerHTML = "Hit any image or press key matches with character shown on drum image";
+      }, 5000);
   }
 }
 
+// Add animation
 function buttonAnimation(currentKey) {
   var activeButton = document.querySelector("." + currentKey);
   activeButton.classList.add("pressed");
